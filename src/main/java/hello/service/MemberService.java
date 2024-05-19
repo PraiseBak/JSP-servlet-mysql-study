@@ -11,5 +11,11 @@ public interface MemberService {
 
     Member findById(Long id);
 
+
+    Member findByUsername(String username);
+
     void save(String username, String password);
+
+    boolean authenticate(String username, String password);
+
 }

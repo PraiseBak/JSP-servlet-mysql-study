@@ -7,6 +7,7 @@ import hello.helper.HttpMethod;
 import hello.service.BoardService;
 import hello.service.BoardServiceImpl;
 import hello.service.MemberServiceImpl;
+import hello.service.UserSessionManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,26 +37,24 @@ public class BoardServlet extends HttpServlet {
         //로그인 구현해야함..
         AddBoardDto addBoardDto = new AddBoardDto(title,content);
 
-        /**
-         * todo cache login implement
-         */
-        String username = "";
+        String username = UserSessionManager.getInstance().getUsername(req.getSession().getId());
         boardService.save(addBoardDto,username);
-
         resp.sendRedirect("/");
     }
+
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long boardId = Long.parseLong(req.getParameter("id"));
 
         /**
-         * todo cache login implement
+         * todo cache login.jsp implement
          */
         String username = "";
         boardService.delete(boardId,username);
         resp.sendRedirect("/board");
     }
+
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,9 +68,9 @@ public class BoardServlet extends HttpServlet {
             String content = req.getParameter("content");
             AddBoardDto addBoardDto = new AddBoardDto(title,content);
             /**
-             * todo cache login implement
+             * todo cache login.jsp implement
              */
-            String username = ""
+            String username = "";
             boardService.update(boardId,addBoardDto,username);
             resp.sendRedirect("/board");
         }catch (NoSuchElementException e){

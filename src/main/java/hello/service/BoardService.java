@@ -21,11 +21,8 @@ public interface BoardService {
      */
     Board findById(Long id);
 
-    /**
-     * 모든 board를 리턴하는 함수
-     * @return List<Board>
-     */
-    List<Board> findAll();
+
+    List<Board> findAll(int page);
 
     /**
      *

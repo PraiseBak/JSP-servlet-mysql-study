@@ -2,10 +2,10 @@ package hello.entity;
 
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
-
-@AllArgsConstructor
 public class Member
 {
     Long id;
@@ -13,4 +13,18 @@ public class Member
     String username;
 
     String password;
+
+    public Member(Long id,String username,String password){
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public long getId() {
+        return this.id;
+    }
 }

@@ -29,10 +29,10 @@ public class MainViewServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Board> boardList = boardService.findAll();
-        req.setAttribute("boardList",boardList);
-        req.getRequestDispatcher("/WEB-INF/views/board_list.jsp").forward(req, resp);
+        System.out.println("redirect");
+        resp.sendRedirect("/board");
     }
+
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
